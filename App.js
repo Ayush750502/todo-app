@@ -1,12 +1,5 @@
-import React, { useState, useEffect, useCallback } from "react";
-import {
-  View,
-  FlatList,
-  Alert,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-} from "react-native";
+import React, { useState, useCallback } from "react";
+import { View, FlatList, Alert, StyleSheet, Text } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Input, Button, Card, Icon } from "react-native-elements";
 import { createStackNavigator } from "@react-navigation/stack";
