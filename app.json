@@ -30,6 +30,12 @@
         "projectId": "a29136a4-f842-4c6e-a383-1e72ef665950"
       }
     },
-    "owner": "ayush750502"
+    "owner": "ayush750502",
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a29136a4-f842-4c6e-a383-1e72ef665950"
+    }
   }
 }
