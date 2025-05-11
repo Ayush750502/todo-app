@@ -128,7 +128,7 @@ const TaskScreen = ({ route, navigation }) => {
           ) : null}
 
           <CustomButton
-            title="Pick Start Time"
+            title="Pick Start Time*"
             onPress={() => setFieldValue("showStartPicker", true)}
           />
           
@@ -146,7 +146,7 @@ const TaskScreen = ({ route, navigation }) => {
           )}
 
           <CustomButton
-            title="Pick End Time"
+            title="Pick End Time*"
             onPress={() => setFieldValue("showEndPicker", true)}
           />
           <DateTimePickerModal

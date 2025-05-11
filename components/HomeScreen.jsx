@@ -44,7 +44,7 @@ const HomeScreen = ({ navigation }) => {
   
     // Delete task
     const deleteTask = (id) => {
-      Alert.alert("Delete Task", "Are you sure?", [
+      Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
         { text: "Cancel", style: "cancel" },
         {
           text: "Delete",
