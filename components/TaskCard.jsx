@@ -13,22 +13,22 @@ const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
   const [collapsed, setCollapsed] = useState(true);
 
   const getBorderColor = () => {
-    if (task.completed) return "#b2fab4"; // light green
+    if (task.completed) return "dodgerblue"; // light green
   
     const now = Date.now();
     const start = task.startTimestamp;
     const end = task.endTimestamp;
   
-    if (now < start) return "#2196f3"; // blue: not started
+    if (now < start) return "lightgreen"; // blue: not started
     if (now >= end) return "#f44336"; // fallback: past due
   
     const total = end - start;
     const elapsed = now - start;
     const remaining = end - now;
   
-    if (remaining <= 10 * 60 * 1000) return "#f44336"; // red
-    if (elapsed >= total / 2) return "#ff9800"; // orange
-    if (now >= start && now < end) return "#ffeb3b"; // yellow
+    if (remaining <= 10 * 60 * 1000) return "red"; // red
+    if (elapsed >= total / 2) return "orange"; // orange
+    if (now >= start && now < end) return "gold"; // yellow
   
     return "#cccccc"; // fallback
   };
