@@ -98,7 +98,7 @@ const TaskScreen = ({ route, navigation }) => {
       }) => (
         <View style={styles.container}>
           <CustomInput
-            placeholder="Title"
+            placeholder="Title*"
             value={values.title}
             onChangeText={handleChange("title")}
             onBlur={handleBlur("title")}
@@ -113,11 +113,11 @@ const TaskScreen = ({ route, navigation }) => {
           />
 
           <CustomInput
-            placeholder={`Start Time: ${formatPrettyTimestamp(values.startTimestamp)}`}
+            placeholder={`Start Time*: ${formatPrettyTimestamp(values.startTimestamp)}`}
             editable={false}
           />
           <CustomInput
-            placeholder={`End Time: ${formatPrettyTimestamp(values.endTimestamp)}`}
+            placeholder={`End Time*: ${formatPrettyTimestamp(values.endTimestamp)}`}
             editable={false}
           />
 
