@@ -9,7 +9,7 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 
-import TaskCard from "./TaskCard";
+import TaskCard from "../components/Home/TaskCard";
 
 import styles from "../style";
 
@@ -48,6 +48,7 @@ const HomeScreen = ({ navigation }) => {
         { text: "Cancel", style: "cancel" },
         {
           text: "Delete",
+          style:"destructive",
           onPress: () => {
             const updatedTasks = tasks.filter((task) => task.id !== id);
             setTasks(updatedTasks);

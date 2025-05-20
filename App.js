@@ -9,8 +9,8 @@ LogBox.ignoreLogs([
 
 const Stack = createStackNavigator();
 
-import HomeScreen from "./components/HomeScreen";
-import TaskScreen from "./components/TaskScreen";
+import HomeScreen from "./screens/HomeScreen";
+import TaskScreen from "./screens/TaskScreen";
 
 export default function App() {
   return (

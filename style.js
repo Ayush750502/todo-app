@@ -70,6 +70,15 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
   },
+  dateTimeButton: {
+    width: "100%",
+    alignSelf: "center",
+    marginVertical: 10,
+    backgroundColor: "#007BFF",
+    padding: 10,
+    borderRadius: 5,
+    maxHeight: "10%",
+  },
   buttonText: { color: "white", textAlign: "center" },
   inputContainer: { marginVertical: 10 },
   input: {

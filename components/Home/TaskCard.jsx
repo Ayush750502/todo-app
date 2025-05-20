@@ -7,7 +7,7 @@ import {
 } from "react-native";
 import { Icon } from "react-native-elements";
 
-import styles from "../style";
+import styles from "../../style";
 
 const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
   const [collapsed, setCollapsed] = useState(true);
@@ -67,6 +67,7 @@ const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
           { text: "Cancel", style: "cancel" },
           {
             text: "Yes",
+            style: "default",
             onPress: () => {
               onToggleComplete(task.id);
             },

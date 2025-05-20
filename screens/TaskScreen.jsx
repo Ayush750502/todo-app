@@ -5,16 +5,18 @@ import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-import CustomInput from "./CustomInput";
-import CustomButton from "./CustomButton";
+import CustomInput from "../components/Task/CustomInput";
+import CustomButton from "../components/Task/CustomButton";
 import styles from "../style";
 
 
 const TaskSchema = Yup.object().shape({
   title: Yup.string()
-    .required("Title is required")
+    .required("Title is required!")
     .max(30, "Title should be at most 30 characters"),
-  description: Yup.string().max(150, "Description should be at most 150 characters"),
+  description: Yup.string()
+    .required("Description is required!")
+    .max(150, "Description should be at most 150 characters"),
   startTimestamp: Yup.number()
     .required("Start time is required"),
   endTimestamp: Yup.number()
@@ -103,32 +105,19 @@ const TaskScreen = ({ route, navigation }) => {
             onChangeText={handleChange("title")}
             onBlur={handleBlur("title")}
             error={touched.title && errors.title}
+            len={30}
           />
           <CustomInput
-            placeholder="Description"
+            placeholder="Description*"
             value={values.description}
             onChangeText={handleChange("description")}
             onBlur={handleBlur("description")}
             error={touched.description && errors.description}
           />
 
-          <CustomInput
-            placeholder={`Start Time*: ${formatPrettyTimestamp(values.startTimestamp)}`}
-            editable={false}
-          />
-          <CustomInput
-            placeholder={`End Time*: ${formatPrettyTimestamp(values.endTimestamp)}`}
-            editable={false}
-          />
-
-          {values.startTimestamp && values.endTimestamp && values.endTimestamp > values.startTimestamp ? (
-            <Text style={{ textAlign: "center", color: "#444", fontSize: 14, marginBottom: 10 }}>
-              {formatDuration(values.startTimestamp, values.endTimestamp)}
-            </Text>
-          ) : null}
-
           <CustomButton
-            title="Pick Start Time*"
+            title = {`Start Time*: ${formatPrettyTimestamp(values.startTimestamp)}`}
+            style={styles.dateTimeButton}
             onPress={() => setFieldValue("showStartPicker", true)}
           />
           
@@ -146,7 +135,8 @@ const TaskScreen = ({ route, navigation }) => {
           )}
 
           <CustomButton
-            title="Pick End Time*"
+            title={`End Time*: ${formatPrettyTimestamp(values.endTimestamp)}`}
+            style={styles.dateTimeButton}
             onPress={() => setFieldValue("showEndPicker", true)}
           />
           <DateTimePickerModal
@@ -158,6 +148,12 @@ const TaskScreen = ({ route, navigation }) => {
             }}
             onCancel={() => setFieldValue("showEndPicker", false)}
           />
+          
+          {values.startTimestamp && values.endTimestamp && values.endTimestamp > values.startTimestamp ? (
+            <Text style={{ textAlign: "center", color: "#444", fontSize: 14, marginBottom: 10 }}>
+              {formatDuration(values.startTimestamp, values.endTimestamp)}
+            </Text>
+          ) : null}
 
           {touched.endTimestamp && errors.endTimestamp && (
             <Text style={{ color: "red" }}>{errors.endTimestamp}</Text>

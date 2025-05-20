@@ -5,14 +5,15 @@ import {
   TextInput,
 } from "react-native";
 
-import styles from "../style";
+import styles from "../../style";
 
-const CustomInput = ({ value, onChangeText, placeholder, error, editable = true }) => {
+const CustomInput = ({ value, onChangeText, placeholder, error, editable = true, len = 150 }) => {
     return (
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
           value={value}
+          maxLength={len}
           onChangeText={onChangeText}
           placeholder={placeholder}
           editable={editable ? true : false}
