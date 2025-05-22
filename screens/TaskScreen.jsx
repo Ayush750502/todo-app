@@ -9,19 +9,20 @@ import CustomInput from "../components/Task/CustomInput";
 import CustomButton from "../components/Task/CustomButton";
 import styles from "../style";
 
+import messages from "../messages";
 
 const TaskSchema = Yup.object().shape({
   title: Yup.string()
-    .required("Title is required!")
-    .max(30, "Title should be at most 30 characters"),
+    .required(messages.Validate.Title.Empty)
+    .max(30, messages.Validate.Title.Length),
   description: Yup.string()
-    .required("Description is required!")
-    .max(150, "Description should be at most 150 characters"),
+    .required(messages.Validate.Description.Empty)
+    .max(150, messages.Validate.Description.Length),
   startTimestamp: Yup.number()
-    .required("Start time is required"),
+    .required(messages.Validate.Time.Start.Empty),
   endTimestamp: Yup.number()
-    .required("End time is required")
-    .test("is-after-start", "End time must be after start time", function (value) {
+    .required(messages.Validate.Time.End.Empty)
+    .test("is-after-start", messages.Validate.Time.End.isAfterStart, function (value) {
       const { startTimestamp } = this.parent;
       return !value || !startTimestamp || value > startTimestamp;
     }),
@@ -161,6 +162,7 @@ const TaskScreen = ({ route, navigation }) => {
 
           <CustomButton
             title={task ? "Save Changes" : "Add Task"}
+            style= {styles.taskButton}
             onPress={handleSubmit}
           />
         </View>

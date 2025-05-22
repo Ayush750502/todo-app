@@ -9,6 +9,8 @@ import { Icon } from "react-native-elements";
 
 import styles from "../../style";
 
+import messages from "../../messages";
+
 const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
   const [collapsed, setCollapsed] = useState(true);
 
@@ -48,7 +50,7 @@ const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
       label = "Ends in";
       msLeft = end - now;
     } else {
-      return "❌ Task is due";
+      return messages.Due;
     }
 
     const totalMinutes = Math.floor(msLeft / (1000 * 60));
@@ -61,8 +63,8 @@ const TaskCard = ({ task, onToggleComplete, onEdit, onDelete }) => {
   const handleToggleComplete = () => {
     if (!task.completed) {
       Alert.alert(
-        "Mark as Complete",
-        "Are you sure you want to mark this task as completed?",
+        messages.Alerts.Mark.Title,
+        messages.Alerts.Mark.Confirmation,
         [
           { text: "Cancel", style: "cancel" },
           {

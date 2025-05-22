@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
   },
   button: {
-    width: "30%",
+    maxHeight: 50,
     alignSelf: "center",
     marginVertical: 10,
     backgroundColor: "#007BFF",
@@ -78,6 +78,12 @@ const styles = StyleSheet.create({
     padding: 10,
     borderRadius: 5,
     maxHeight: "10%",
+  },
+  taskButton: {
+    position: "absolute",
+    bottom: 0,
+    justifyContent: "flex-end",
+    paddingBottom: 10,
   },
   buttonText: { color: "white", textAlign: "center" },
   inputContainer: { marginVertical: 10 },

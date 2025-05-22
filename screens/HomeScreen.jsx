@@ -13,6 +13,8 @@ import TaskCard from "../components/Home/TaskCard";
 
 import styles from "../style";
 
+import messages from "../messages.js";
+
 const HomeScreen = ({ navigation }) => {
     const [tasks, setTasks] = useState([]);
   
@@ -44,7 +46,10 @@ const HomeScreen = ({ navigation }) => {
   
     // Delete task
     const deleteTask = (id) => {
-      Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
+      Alert.alert(
+        messages.Alerts.Delete.Title,
+        messages.Alerts.Delete.Confirmation,
+        [
         { text: "Cancel", style: "cancel" },
         {
           text: "Delete",
@@ -69,7 +74,7 @@ const HomeScreen = ({ navigation }) => {
           data={tasks.reverse()}
           keyExtractor={(item) => item.id}
           ListEmptyComponent={
-            <Text style={styles.noTasks}>No tasks available. Add one!</Text>
+            <Text style={styles.noTasks}>{messages.Empty}</Text>
           }
           renderItem={({ item }) => (
             <TaskCard
