@@ -117,6 +117,54 @@ const styles = StyleSheet.create({
     width: "30%",
     backgroundColor: "#28a745", // Green color for completed/incomplete toggle
   },
+  loginContainer: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+  loginTitle: {
+    fontSize: 32,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  loginInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
+  loginButtonContainer: {
+    marginBottom: 10,
+  },
+  loginError: {
+    color: "red",
+    marginBottom: 10,
+  },
+  signUpContainer: {
+    flex: 1,
+    justifyContent: "center",
+    padding: 20,
+  },
+  signUpTitle: {
+    fontSize: 32,
+    marginBottom: 20,
+    textAlign: "center",
+  },
+  signUpInput: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 5,
+  },
+  signUpButtonContainer: {
+    marginBottom: 10,
+  },
+  signUpError: {
+    color: "red",
+    marginBottom: 10,
+  },
 });
 
 export default styles;

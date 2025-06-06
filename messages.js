@@ -17,6 +17,28 @@ export default messages = {
         isAfterStart: "End time must be after start time",
       },
     },
+    Login: {
+      email: {
+        email: "Invalid email",
+        length: "Email cannot exceed 50 characters",
+      },
+      password: {
+        minLength: "Your password too short!",
+        maxLength: "Password cannot exceed 20 characters",
+      },
+    },
+    SignUp: {
+      email: {
+        email: "Invalid email",
+        length: "Email cannot exceed 50 characters",
+      },
+      password: {
+        minLength: "Your password too short!",
+        maxLength: "Password cannot exceed 20 characters",
+        charaterSpecification:
+          "Password must contain at least one uppercase, one lowercase, one digit, and one special character",
+      },
+    },
   },
   Completed: "✅ Completed",
   Due: "❌ Task is due",
@@ -29,6 +51,34 @@ export default messages = {
     Delete: {
       Title: "Delete",
       Confirmation: "Are you sure you want to delete this task?",
+    },
+    SignUp: {
+      UserFound: {
+        Title: "Error",
+        message: "User already exists!",
+      },
+      Success: {
+        Title: "Success",
+        message: "Account created! Please log in.",
+      },
+      Error: {
+        Title: "Error",
+        message: "Something went wrong.",
+      },
+    },
+    Login: {
+      Failed: {
+        Title: "Login Failed",
+        message: "Invalid email or password",
+      },
+      Error: {
+        Title: "Error",
+        message: "Something went wrong.",
+      },
+    },
+    LogOut: {
+      Title: "Logout",
+      Confirmation: "Are you sure you want to log out?",
     },
   },
 };
