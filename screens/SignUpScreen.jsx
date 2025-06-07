@@ -3,6 +3,9 @@ import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { login } from "../redux/authSlice";
+
 import styles from "../style";
 import messages from "../messages";
 
@@ -22,6 +25,8 @@ const SignUpSchema = Yup.object().shape({
 });
 
 export default function SignUpScreen({ navigation }) {
+  const dispatch = useDispatch();
+
   const handleSignUp = async (values) => {
     try {
       const storedUsers = await AsyncStorage.getItem("users");
@@ -37,7 +42,7 @@ export default function SignUpScreen({ navigation }) {
       // Add new user
       users.push({ email: values.email, password: values.password });
       await AsyncStorage.setItem("users", JSON.stringify(users));
-
+      dispatch(login(values.email)); 
       Alert.alert(messages.Alerts.SignUp.Success.Title, messages.Alerts.SignUp.Success.message);
       navigation.replace("Login");
     } catch (error) {

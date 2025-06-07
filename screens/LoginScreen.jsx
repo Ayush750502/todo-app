@@ -3,6 +3,9 @@ import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch} from 'react-redux';
+import { login } from "../redux/authSlice";
+
 import styles from "../style";
 import messages from "../messages";
 
@@ -18,6 +21,9 @@ const LoginSchema = Yup.object().shape({
 });
 
 export default function LoginScreen({ navigation }) {
+  const dispatch = useDispatch();
+
+
   const handleLogin = async (values) => {
     try {
       const storedUsers = await AsyncStorage.getItem("users");
@@ -28,6 +34,7 @@ export default function LoginScreen({ navigation }) {
       );
 
       if (user) {
+        dispatch(login(user.email));
         navigation.replace("HomeScreen");
       } else {
         Alert.alert(messages.Alerts.Login.Failed.Title, messages.Alerts.Login.Failed.message);
