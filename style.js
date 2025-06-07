@@ -120,11 +120,11 @@ const styles = StyleSheet.create({
   loginContainer: {
     flex: 1,
     justifyContent: "center",
-    padding: 20,
   },
   loginTitle: {
     fontSize: 32,
     marginBottom: 20,
+    marginTop: 30,
     textAlign: "center",
   },
   loginInput: {
@@ -132,10 +132,24 @@ const styles = StyleSheet.create({
     borderColor: "#ccc",
     padding: 10,
     marginBottom: 10,
-    borderRadius: 5,
+    margin: 20,
+    borderRadius: 25,
+    backgroundColor: "white",
   },
   loginButtonContainer: {
     marginBottom: 10,
+    margin: 10,
+    padding: 10,
+  },
+  loginScreenButtons: {
+    padding: 10,
+    borderRadius: 25,
+    margin: 5,
+    alignItems: "center",
+  },
+  loginScreenButtonsText: {
+    color: "white",
+    fontSize: 16,
   },
   loginError: {
     color: "red",
@@ -144,22 +158,35 @@ const styles = StyleSheet.create({
   signUpContainer: {
     flex: 1,
     justifyContent: "center",
-    padding: 20,
   },
   signUpTitle: {
     fontSize: 32,
     marginBottom: 20,
     textAlign: "center",
+    marginTop: "10%",
   },
   signUpInput: {
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
     marginBottom: 10,
-    borderRadius: 5,
+    borderRadius: 25,
+    backgroundColor: "white",
+    margin: 20,
   },
   signUpButtonContainer: {
-    marginBottom: 10,
+    margin: 10,
+    padding: 10,
+  },
+  signUpScreenButtons: {
+    padding: 10,
+    borderRadius: 25,
+    margin: 5,
+    alignItems: "center",
+  },
+  signUpScreenButtonsText: {
+    color: "white",
+    fontSize: 16,
   },
   signUpError: {
     color: "red",

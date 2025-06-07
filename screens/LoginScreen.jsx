@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, TextInput, Button, StyleSheet, Alert } from "react-native";
+import { View, Text, TextInput, Button, Alert, ImageBackground, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -47,6 +47,10 @@ export default function LoginScreen({ navigation }) {
 
   return (
     <View style={styles.loginContainer}>
+      <ImageBackground
+  source={require("../assets/bgImage.png")}
+  style={{ flex: 1, resizeMode: "cover" }}
+>
       <Text style={styles.loginTitle}>Login</Text>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -78,19 +82,24 @@ export default function LoginScreen({ navigation }) {
             {errors.password && touched.password && (
               <Text style={styles.loginError}>{errors.password}</Text>
             )}
-            <View style={styles.loginButtonContainer}>
-                <Button style={styles.loginButton} title="Login" onPress={handleSubmit} />
-            </View>
-            <View >
-            <Button
-              title="Sign Up"
+            <View style={styles.loginButtonContainer} >
+            <TouchableOpacity
+              style={[styles.loginScreenButtons, {backgroundColor: 'blue'}]}
+              onPress={handleSubmit}
+            >
+              <Text style={styles.loginScreenButtonsText}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={[styles.loginScreenButtons, {backgroundColor: 'grey'}]}
               onPress={() => navigation.replace("SignUp")}
-              color="grey"
-            />
+            >
+              <Text style={styles.loginScreenButtonsText}>Sign Up</Text>
+            </TouchableOpacity>
             </View>
           </>
         )}
       </Formik>
+</ImageBackground>
     </View>
   );
 }
