@@ -127,6 +127,20 @@ const styles = StyleSheet.create({
     marginTop: 30,
     textAlign: "center",
   },
+  loginPasswordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 25,
+    marginBottom: 10,
+    margin: 20,
+    backgroundColor: "white",
+    padding: 10,
+  },
+  loginPassword: {
+    flex: 1,
+  },
   loginInput: {
     borderWidth: 1,
     borderColor: "#ccc",
@@ -168,6 +182,20 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
     marginTop: "10%",
+  },
+  signUpPasswordContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 25,
+    marginBottom: 10,
+    margin: 20,
+    backgroundColor: "white",
+    padding: 10,
+  },
+  signUpPassword: {
+    flex: 1,
   },
   signUpInput: {
     borderWidth: 1,

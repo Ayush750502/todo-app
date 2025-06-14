@@ -1,9 +1,11 @@
-import React from "react";
-import { View, Text, TextInput, Button, Alert, ImageBackground, TouchableOpacity } from "react-native";
+import {useState} from "react";
+import { View, Text, TextInput, Alert, ImageBackground, TouchableOpacity } from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch} from 'react-redux';
+import { Ionicons } from "@expo/vector-icons";
+
 import { login } from "../redux/authSlice";
 
 import styles from "../style";
@@ -19,7 +21,7 @@ const LoginSchema = Yup.object().shape({
 
 export default function LoginScreen({ navigation }) {
   const dispatch = useDispatch();
-
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleLogin = async (values) => {
     try {
@@ -69,14 +71,25 @@ export default function LoginScreen({ navigation }) {
             {errors.name && touched.name && (
               <Text style={styles.loginError}>{errors.name}</Text>
             )}
-            <TextInput
-              style={styles.loginInput}
-              placeholder="Password"
-              onChangeText={handleChange("password")}
-              onBlur={handleBlur("password")}
-              value={values.password}
-              secureTextEntry
-            />
+            <View style={styles.loginPasswordContainer}>
+              <TextInput
+                style={styles.loginPassword}
+                placeholder="Password"
+                onChangeText={handleChange("password")}
+                onBlur={handleBlur("password")}
+                value={values.password}
+                secureTextEntry={!showPassword}
+              />
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+              >
+                <Ionicons
+                  name={showPassword ? "eye-off" : "eye"}
+                  size={24}
+                  color="gray"
+                />
+              </TouchableOpacity>
+            </View>
             {errors.password && touched.password && (
               <Text style={styles.loginError}>{errors.password}</Text>
             )}

@@ -1,5 +1,6 @@
-import React from "react";
-import { View, Text, TextInput, Button, ImageBackground, Alert, TouchableOpacity } from "react-native";
+import {useState} from "react";
+import { View, Text, TextInput, ImageBackground, Alert, TouchableOpacity } from "react-native";
+import { Ionicons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -32,6 +33,8 @@ const SignUpSchema = Yup.object().shape({
 
 export default function SignUpScreen({ navigation }) {
   const dispatch = useDispatch();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleSignUp = async (values) => {
     try {
@@ -95,25 +98,43 @@ export default function SignUpScreen({ navigation }) {
             {errors.email && touched.email && (
               <Text style={styles.signUpError}>{errors.email}</Text>
             )}
+            <View style={styles.signUpPasswordContainer}>
             <TextInput
-              style={styles.signUpInput}
+            style={styles.signUpPassword}
               placeholder="Password"
               onChangeText={handleChange("password")}
               onBlur={handleBlur("password")}
               value={values.password}
-              secureTextEntry
+              secureTextEntry={!showPassword}
             />
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={24}
+                color="gray"
+              />
+            </TouchableOpacity>
+          </View>
             {errors.password && touched.password && (
               <Text style={styles.signUpError}>{errors.password}</Text>
             )}
+            <View style={styles.signUpPasswordContainer}>
             <TextInput
-                style={styles.signUpInput}
-                placeholder="Confirm Password"
-                onChangeText={handleChange("confirmPassword")}
-                onBlur={handleBlur("confirmPassword")}
-                value={values.confirmPassword}
-                secureTextEntry
+            style={styles.signUpPassword}
+              placeholder="Confirm Password"
+              onChangeText={handleChange("confirmPassword")}
+              onBlur={handleBlur("confirmPassword")}
+              value={values.confirmPassword}
+              secureTextEntry={!showConfirmPassword}
+            />
+            <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+              <Ionicons
+                name={showPassword ? "eye-off" : "eye"}
+                size={24}
+                color="gray"
               />
+            </TouchableOpacity>
+          </View>
               {errors.confirmPassword && touched.confirmPassword && (
                 <Text style={styles.signUpError}>{errors.confirmPassword}</Text>
               )}
