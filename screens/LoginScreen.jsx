@@ -32,7 +32,7 @@ export default function LoginScreen({ navigation }) {
 
       if (user) {
         dispatch(login(user.name));
-        await AsyncStorage.setItem("currentUser", values.name);
+        await AsyncStorage.setItem("currentUser", user.name);
         navigation.replace("HomeScreen");
       } else {
         Alert.alert(messages.Alerts.Login.Failed.Title, messages.Alerts.Login.Failed.message);

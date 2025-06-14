@@ -4,8 +4,10 @@ import { LogBox } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NavigationContainer } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
+
 import store from "./redux/store";
+import { setUser } from "./redux/authSlice";
 
 import HomeScreen from "./screens/HomeScreen";
 import TaskScreen from "./screens/TaskScreen";
@@ -18,36 +20,47 @@ LogBox.ignoreLogs([
 
 const Stack = createStackNavigator();
 
-export default function App() {
-  const [initialRoute, setInitialRoute] = useState(null); // 'HomeScreen' or 'Login'
+const AppContent = () => {
+  const { isLoggedIn } = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+  const [rehydrated, setRehydrated] = useState(false);
 
   useEffect(() => {
     const checkUser = async () => {
-      const currentUser = await AsyncStorage.getItem("currentUser");
-      setInitialRoute(currentUser ? "HomeScreen" : "Login");
+      const storedUser = await AsyncStorage.getItem("currentUser");
+      if (storedUser) {
+        dispatch(setUser(storedUser)); // Set Redux state
+      }
+      setRehydrated(true);
     };
 
     checkUser();
   }, []);
 
-  if (initialRoute === null) {
+  if (!rehydrated) {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <ActivityIndicator size="large" color="blue" />
+        <ActivityIndicator size="large" />
       </View>
     );
   }
 
   return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName={isLoggedIn ? "HomeScreen" : "Login"}>
+        <Stack.Screen name="Login" component={LoginScreen} />
+        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+        <Stack.Screen name="TaskScreen" component={TaskScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default function App() {
+  return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName={initialRoute}>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="SignUp" component={SignUpScreen} />
-          <Stack.Screen name="HomeScreen" component={HomeScreen} />
-          <Stack.Screen name="TaskScreen" component={TaskScreen} />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <AppContent />
     </Provider>
   );
 }

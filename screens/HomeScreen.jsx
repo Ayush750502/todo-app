@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { logout } from "../redux/authSlice"; // Assuming you have a logout action in your authSlice 
 
 import TaskCard from "../components/Home/TaskCard";
 
@@ -16,7 +18,7 @@ import messages from "../messages.js";
 
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
-
+  const dispatch = useDispatch();
   // Load tasks from AsyncStorage
   const loadTasks = async () => {
     const storedTasks = await AsyncStorage.getItem("tasks");
@@ -91,6 +93,7 @@ const HomeScreen = ({ navigation }) => {
         style: "destructive",
         onPress: () => {
           AsyncStorage.removeItem("currentUser");
+          dispatch(logout()); // Dispatch logout action to Redux store  
           navigation.replace("Login");
         },
       },
