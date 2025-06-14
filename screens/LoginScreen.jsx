@@ -10,14 +10,11 @@ import styles from "../style";
 import messages from "../messages";
 
 const LoginSchema = Yup.object().shape({
-  email: Yup.string()
-    .email(messages.Validate.Login.email.email)
-    .max(50, messages.Validate.Login.email.length)
-    .required("Required"),
+  name: Yup.string().required(messages.Validate.Login.name.required).max(30, messages.Validate.Login.name.length),
   password: Yup.string()
     .min(4, messages.Validate.Login.password.minLength)
     .max(20, messages.Validate.Login.password.maxLength)
-    .required("Required"),
+    .required(messages.Validate.Login.password.required),
 });
 
 export default function LoginScreen({ navigation }) {
@@ -30,11 +27,11 @@ export default function LoginScreen({ navigation }) {
       const users = storedUsers ? JSON.parse(storedUsers) : [];
 
       const user = users.find(
-        (u) => u.email === values.email && u.password === values.password
+        (u) => u.name == values.name && u.password == values.password
       );
 
       if (user) {
-        dispatch(login(user.email));
+        dispatch(login(user.name));
         navigation.replace("HomeScreen");
       } else {
         Alert.alert(messages.Alerts.Login.Failed.Title, messages.Alerts.Login.Failed.message);
@@ -53,7 +50,7 @@ export default function LoginScreen({ navigation }) {
 >
       <Text style={styles.loginTitle}>Login</Text>
       <Formik
-        initialValues={{ email: "", password: "" }}
+        initialValues={{ name: "", password: "" }}
         validationSchema={LoginSchema}
         onSubmit={handleLogin}
       >
@@ -61,15 +58,15 @@ export default function LoginScreen({ navigation }) {
           <>
             <TextInput
               style={styles.loginInput}
-              placeholder="Email"
-              onChangeText={handleChange("email")}
-              onBlur={handleBlur("email")}
-              value={values.email}
+              placeholder="Name"
+              onChangeText={handleChange("name")}
+              onBlur={handleBlur("name")}
+              value={values.name}
               autoCapitalize="none"
               keyboardType="email-address"
             />
-            {errors.email && touched.email && (
-              <Text style={styles.loginError}>{errors.email}</Text>
+            {errors.name && touched.name && (
+              <Text style={styles.loginError}>{errors.name}</Text>
             )}
             <TextInput
               style={styles.loginInput}
