@@ -18,25 +18,36 @@ export default messages = {
       },
     },
     Login: {
-      email: {
-        email: "Invalid email",
-        length: "Email cannot exceed 50 characters",
+      name: {
+        required: "Name is required",
+        length: "Too long! Name cannot exceed 30 characters",
       },
       password: {
         minLength: "Your password too short!",
         maxLength: "Password cannot exceed 20 characters",
+        required: "Password is required",
       },
     },
     SignUp: {
+      name: {
+        required: "Name is required",
+        length: "Too long! Name cannot exceed 30 characters",
+      },
       email: {
         email: "Invalid email",
         length: "Email cannot exceed 50 characters",
+        required: "Email is required",
       },
       password: {
         minLength: "Your password too short!",
         maxLength: "Password cannot exceed 20 characters",
         charaterSpecification:
           "Password must contain at least one uppercase, one lowercase, one digit, and one special character",
+        required: "Password is required",
+      },
+      confirmPassword: {
+        required: "Confirm password is required",
+        match: "Passwords must match",
       },
     },
   },
@@ -69,7 +80,7 @@ export default messages = {
     Login: {
       Failed: {
         Title: "Login Failed",
-        message: "Invalid email or password",
+        message: "Invalid name or password",
       },
       Error: {
         Title: "Error",
