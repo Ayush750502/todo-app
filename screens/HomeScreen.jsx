@@ -90,6 +90,7 @@ const HomeScreen = ({ navigation }) => {
         text: "Logout",
         style: "destructive",
         onPress: () => {
+          AsyncStorage.removeItem("currentUser");
           navigation.replace("Login");
         },
       },
