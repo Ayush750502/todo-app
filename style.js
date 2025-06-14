@@ -153,7 +153,11 @@ const styles = StyleSheet.create({
   },
   loginError: {
     color: "red",
-    marginBottom: 10,
+    marginLeft: 20,
+    paddingLeft: 10,
+    textShadowColor: "white",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
   },
   signUpContainer: {
     flex: 1,
@@ -190,7 +194,11 @@ const styles = StyleSheet.create({
   },
   signUpError: {
     color: "red",
-    marginBottom: 10,
+    marginLeft: 20,
+    paddingLeft: 10,
+    textShadowColor: "white",
+    textShadowOffset: { width: 1, height: 1 },
+    textShadowRadius: 1,
   },
 });
 
