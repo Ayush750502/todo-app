@@ -18,9 +18,10 @@ export default messages = {
       },
     },
     Login: {
-      name: {
-        required: "Name is required",
-        length: "Too long! Name cannot exceed 30 characters",
+      email: {
+        email: "Invalid email",
+        required: "Email is required",
+        length: "Too long! Email cannot exceed 50 characters",
       },
       password: {
         minLength: "Your password too short!",
@@ -80,7 +81,7 @@ export default messages = {
     Login: {
       Failed: {
         Title: "Login Failed",
-        message: "Invalid name or password",
+        message: "Invalid email or password",
       },
       Error: {
         Title: "Error",
