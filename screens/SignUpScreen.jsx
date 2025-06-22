@@ -130,7 +130,7 @@ export default function SignUpScreen({ navigation }) {
             />
             <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
               <Ionicons
-                name={showPassword ? "eye-off" : "eye"}
+                name={showConfirmPassword ? "eye-off" : "eye"}
                 size={24}
                 color="gray"
               />
