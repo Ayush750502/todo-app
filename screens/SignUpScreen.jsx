@@ -11,8 +11,9 @@ import styles from "../style";
 import messages from "../messages";
 
 const SignUpSchema = Yup.object().shape({
-  name: Yup.string()
-    .max(30, messages.Validate.SignUp.name.length)
+  name: Yup.string().matches(/^[a-zA-Z\s]+$/, messages.Validate.SignUp.name.characterSpecification)
+    .min(2, messages.Validate.SignUp.name.minLength)
+    .max(30, messages.Validate.SignUp.name.maxLength)
     .required(messages.Validate.SignUp.name.required),
   email: Yup.string()
     .email(messages.Validate.SignUp.email.email)

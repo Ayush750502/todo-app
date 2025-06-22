@@ -32,7 +32,9 @@ export default messages = {
     SignUp: {
       name: {
         required: "Name is required",
-        length: "Too long! Name cannot exceed 30 characters",
+        characterSpecification: "Name must contain only letters and spaces",
+        maxLength: "Too long! Name cannot exceed 30 characters",
+        minLength: "Name must be at least 2 characters long",
       },
       email: {
         email: "Invalid email",
