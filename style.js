@@ -136,10 +136,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     margin: 20,
     backgroundColor: "white",
-    padding: 10,
   },
   loginPassword: {
     flex: 1,
+    padding: 10,
   },
   loginInput: {
     borderWidth: 1,
@@ -173,6 +173,7 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
   },
+  passwordIcon: { paddingRight: 10 },
   signUpContainer: {
     flex: 1,
     justifyContent: "center",
@@ -192,10 +193,10 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     margin: 20,
     backgroundColor: "white",
-    padding: 10,
   },
   signUpPassword: {
     flex: 1,
+    padding: 10,
   },
   signUpInput: {
     borderWidth: 1,

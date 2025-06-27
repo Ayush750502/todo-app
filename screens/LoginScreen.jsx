@@ -49,11 +49,11 @@ export default function LoginScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.loginContainer}>
       <ImageBackground
   source={require("../assets/bgImage.png")}
   style={{ flex: 1, resizeMode: "cover" }}
 >
+  <View style={styles.loginContainer}>
       <Text style={styles.loginTitle}>Login</Text>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -85,6 +85,7 @@ export default function LoginScreen({ navigation }) {
               />
               <TouchableOpacity
                 onPress={() => setShowPassword(!showPassword)}
+                style={styles.passwordIcon}
               >
                 <Ionicons
                   name={showPassword ? "eye-off" : "eye"}
@@ -113,7 +114,7 @@ export default function LoginScreen({ navigation }) {
           </>
         )}
       </Formik>
-</ImageBackground>
     </View>
+</ImageBackground>
   );
 }

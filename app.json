@@ -23,7 +23,7 @@
       "package": "com.ayush750502.todoapp"
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/icon.jpg"
     },
     "extra": {
       "eas": {

@@ -11,7 +11,7 @@ import styles from "../style";
 import messages from "../messages";
 
 const SignUpSchema = Yup.object().shape({
-  name: Yup.string().matches(/^[a-zA-Z\s]+$/, messages.Validate.SignUp.name.characterSpecification)
+  name: Yup.string().matches(/^[a-zA-Z\s.]+$/, messages.Validate.SignUp.name.characterSpecification)
     .min(2, messages.Validate.SignUp.name.minLength)
     .max(30, messages.Validate.SignUp.name.maxLength)
     .required(messages.Validate.SignUp.name.required),
@@ -64,11 +64,11 @@ export default function SignUpScreen({ navigation }) {
   };
 
   return (
-    <View style={styles.signUpContainer}>
-      <ImageBackground
+    <ImageBackground
   source={require("../assets/bgImage.png")}
   style={{ flex: 1, resizeMode: "cover" }}
 >
+  <View style={styles.signUpContainer}>
       <Text style={styles.signUpTitle}>Sign Up</Text>
       <Formik
         initialValues={{ name: "", email: "", password: "", confirmPassword: "" }}
@@ -108,7 +108,7 @@ export default function SignUpScreen({ navigation }) {
               value={values.password}
               secureTextEntry={!showPassword}
             />
-            <TouchableOpacity onPress={() => setShowPassword(!showPassword)}>
+            <TouchableOpacity onPress={() => setShowPassword(!showPassword)} style={styles.passwordIcon}>
               <Ionicons
                 name={showPassword ? "eye-off" : "eye"}
                 size={24}
@@ -128,7 +128,7 @@ export default function SignUpScreen({ navigation }) {
               value={values.confirmPassword}
               secureTextEntry={!showConfirmPassword}
             />
-            <TouchableOpacity onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+            <TouchableOpacity style={styles.passwordIcon} onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
               <Ionicons
                 name={showConfirmPassword ? "eye-off" : "eye"}
                 size={24}
@@ -157,7 +157,7 @@ export default function SignUpScreen({ navigation }) {
           </>
         )}
       </Formik>
-</ImageBackground>
     </View>
+</ImageBackground>
   );
 }
