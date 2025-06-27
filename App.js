@@ -48,8 +48,16 @@ const AppContent = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName={isLoggedIn ? "HomeScreen" : "Login"}>
-        <Stack.Screen name="Login" component={LoginScreen} />
-        <Stack.Screen name="SignUp" component={SignUpScreen} />
+        <Stack.Screen
+          name="Login"
+          component={LoginScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SignUp"
+          component={SignUpScreen}
+          options={{ headerShown: false }}
+        />
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen name="TaskScreen" component={TaskScreen} />
       </Stack.Navigator>
