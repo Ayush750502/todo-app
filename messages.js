@@ -53,6 +53,30 @@ export default messages = {
         match: "Passwords must match",
       },
     },
+    userPanel: {
+      mobile: {
+        required: "Mobile number is required",
+        length: "Mobile number must be 10 digits starting with 6-9",
+      },
+      countryCode: {
+        required: "Country code is required",
+        format: "Enter a valid country code (e.g., +91)",
+      },
+      address: {
+        required: "Address is required",
+        length: "Address must be at least 5 characters long",
+      },
+      dob: {
+        required: "Date of birth is required",
+        max: "Date of birth cannot be in the future",
+        format: "Date of birth must be in the format DD/MM/YYYY",
+      },
+    },
+    changePassword: {
+      newPassword: {
+        notMatches: "New password must be different from old password",
+      },
+    },
   },
   Completed: "✅ Completed",
   Due: "❌ Task is due",
@@ -93,6 +117,41 @@ export default messages = {
     LogOut: {
       Title: "Logout",
       Confirmation: "Are you sure you want to log out?",
+    },
+    pickImage: {
+      permission: {
+        message:
+          "Permission Denied: You need to allow camera access to take a photo.",
+      },
+    },
+    updateProfile: {
+      Success: {
+        Title: "Profile Updated",
+        message: "Your profile has been successfully updated.",
+      },
+      Error: {
+        Title: "Error",
+        message: "Failed to update profile. Please try again.",
+      },
+    },
+    changePassword: {
+      Success: {
+        Title: "Password Changed",
+        message:
+          "Your password has been successfully changed. Please log in again.",
+      },
+      User: {
+        Title: "User Not Found",
+        message: "No user is currently logged in.",
+      },
+      oldPassword: {
+        Title: "Error",
+        message: "Old password is incorrect.",
+      },
+      Error: {
+        Title: "Error",
+        message: "Failed to change password. Please try again.",
+      },
     },
   },
 };

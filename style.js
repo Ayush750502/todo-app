@@ -229,6 +229,68 @@ const styles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 1,
   },
+  profileContainer: {
+    flex: 1,
+    justifyContent: "top",
+    marginTop: "10%",
+  },
+  logoutButton: {
+    marginTop: 20,
+    padding: 15,
+    marginHorizontal: 10,
+    backgroundColor: "red",
+    borderRadius: 10,
+  },
+  logoutButtonText: {
+    color: "white",
+    textAlign: "center",
+    fontWeight: "bold",
+  },
+  overlay: {
+    flex: 1,
+    backgroundColor: "#00000055",
+  },
+  popup: {
+    position: "absolute",
+    top: "30%",
+    left: "10%",
+    right: "10%",
+    backgroundColor: "#fff",
+    padding: 20,
+    borderRadius: 15,
+    elevation: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.3,
+    shadowRadius: 6,
+  },
+  popupTitle: {
+    textAlign: "center",
+    fontWeight: "bold",
+    fontSize: 18,
+    marginBottom: 15,
+  },
+  optionButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+    marginBottom: 10,
+  },
+  cancelButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 10,
+    marginTop: 5,
+    borderTopWidth: 1,
+    borderTopColor: "#ccc",
+  },
+  optionText: {
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  camIcon: {
+    marginRight: 10,
+  },
 });
 
 export default styles;

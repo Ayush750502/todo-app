@@ -9,7 +9,6 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/authSlice"; // Assuming you have a logout action in your authSlice 
 
 import TaskCard from "../components/Home/TaskCard";
 
@@ -18,7 +17,6 @@ import messages from "../messages.js";
 
 const HomeScreen = ({ navigation }) => {
   const [tasks, setTasks] = useState([]);
-  const dispatch = useDispatch();
   // Load tasks from AsyncStorage
   const loadTasks = async () => {
     const storedTasks = await AsyncStorage.getItem("tasks");
@@ -68,36 +66,6 @@ const HomeScreen = ({ navigation }) => {
   // Navigate to the Task Screen to add or edit a task
   const handleEdit = (task) => {
     navigation.navigate("TaskScreen", { task });
-  };
-
-  // Add logout button to the header
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerRight: () => (
-        <TouchableOpacity
-          onPress={handleLogout}
-          style={{ marginRight: 15 }}
-        >
-          <Text style={{ color: "red", fontWeight: "bold" }}>Logout</Text>
-        </TouchableOpacity>
-      ),
-    });
-  }, [navigation]);
-
-  // Handle logout
-  const handleLogout = () => {
-    Alert.alert(messages.Alerts.LogOut.Title, messages.Alerts.LogOut.Confirmation, [
-      { text: "Cancel", style: "cancel" },
-      {
-        text: "Logout",
-        style: "destructive",
-        onPress: () => {
-          AsyncStorage.removeItem("currentUser");
-          dispatch(logout()); // Dispatch logout action to Redux store  
-          navigation.replace("Login");
-        },
-      },
-    ]);
   };
 
   return (
