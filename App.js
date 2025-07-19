@@ -38,6 +38,7 @@ function DrawerStack() {
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
       <Drawer.Screen name="Profile" component={UserPanelScreen} />
+      <Drawer.Screen name="ChangePassword" component={ChangePasswordScreen} />
       <Drawer.Screen
         name="TaskScreen"
         component={TaskScreen}
@@ -85,7 +86,6 @@ const AppContent = () => {
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="SignUp" component={SignUpScreen} />
         <Stack.Screen name="Drawer" component={DrawerStack} />
-        <Stack.Screen name="ChangePassword" component={ChangePasswordScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
