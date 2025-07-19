@@ -78,7 +78,6 @@ export default function ChangePasswordScreen({ navigation }) {
 
   return (
   <View style={styles.signUpContainer}>
-      <Text style={styles.signUpTitle}>Change Password</Text>
       <Formik
         initialValues={{ oldPassword: "", newPassword: "", confirmPassword: "" }}
         validationSchema={ChangePasswordSchema}
