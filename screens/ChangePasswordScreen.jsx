@@ -1,11 +1,10 @@
 import {useState} from "react";
-import { View, Text, TextInput, ImageBackground, Alert, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, Alert, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useDispatch } from "react-redux";
-import { logout } from "../redux/authSlice";
 
 import styles from "../style";
 import messages from "../messages";
@@ -68,13 +67,8 @@ export default function ChangePasswordScreen({ navigation }) {
 
     users[userIndex].password = values.newPassword;
     await AsyncStorage.setItem("users", JSON.stringify(users));
-
-    // Remove current user session
-    await AsyncStorage.removeItem("currentUser");
-    dispatch(logout());
-
     Alert.alert(messages.Alerts.changePassword.Success.Title, messages.Alerts.changePassword.Success.message);
-    navigation.replace("Login");
+    
   } catch (error) {
     console.error(error);
     Alert.alert(messages.Alerts.changePassword.Error.Title, messages.Alerts.changePassword.Error.message);
