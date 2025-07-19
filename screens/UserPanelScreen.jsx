@@ -270,7 +270,7 @@ const UserPanelScreen = ({ navigation }) => {
 
             {/* Update Button */}
             <TouchableOpacity
-              style={[styles.loginScreenButtons, { backgroundColor: "blue" }]}
+              style={styles.profileButton}
               onPress={handleSubmit}
             >
               <Text style={styles.loginScreenButtonsText}>Update Profile</Text>

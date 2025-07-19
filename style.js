@@ -234,6 +234,16 @@ const styles = StyleSheet.create({
     justifyContent: "top",
     marginTop: "10%",
   },
+  profileButton: {
+    alignItems: "center",
+    borderWidth: 1,
+    borderColor: "#ccc",
+    padding: 10,
+    marginBottom: 10,
+    borderRadius: 25,
+    backgroundColor: "blue",
+    margin: 20,
+  },
   logoutButton: {
     marginTop: 20,
     padding: 15,
