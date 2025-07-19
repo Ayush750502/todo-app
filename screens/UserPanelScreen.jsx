@@ -276,13 +276,6 @@ const UserPanelScreen = ({ navigation }) => {
               <Text style={styles.loginScreenButtonsText}>Update Profile</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={[styles.loginScreenButtons, { backgroundColor: "red" }]}
-              onPress={() => navigation.replace("ChangePassword")}
-            >
-              <Text style={styles.loginScreenButtonsText}>Update Password</Text>
-            </TouchableOpacity>
-
             {/* Photo Picker Modal */}
             <CameraOptions
   show={showPhotoOptions}
