@@ -137,8 +137,7 @@ export default messages = {
     changePassword: {
       Success: {
         Title: "Password Changed",
-        message:
-          "Your password has been successfully changed. Please log in again.",
+        message: "Your password has been successfully changed.",
       },
       User: {
         Title: "User Not Found",
