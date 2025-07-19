@@ -153,12 +153,6 @@ export default function ChangePasswordScreen({ navigation }) {
             >
               <Text style={styles.loginScreenButtonsText}>Change Password</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={[styles.loginScreenButtons, {backgroundColor: 'grey'}]}
-              onPress={() => navigation.replace("Drawer")}
-            >
-              <Text style={styles.loginScreenButtonsText}>Cancel</Text>
-            </TouchableOpacity>
             </View>
           </>
         )}
