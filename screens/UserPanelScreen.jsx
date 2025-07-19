@@ -6,19 +6,17 @@ import {
   TouchableOpacity,
   Image,
   ScrollView,
-  Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { Ionicons } from "@expo/vector-icons";
-import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
+import CameraOptions from "../components/UserPanel/CameraOptions"; // Assuming modular picker
 
 import styles from "../style";
 import messages from "../messages";
-
-import CameraOptions from "../components/UserPanel/CameraOptions";
 
 const ProfileSchema = Yup.object().shape({
   name: Yup.string()
@@ -28,26 +26,23 @@ const ProfileSchema = Yup.object().shape({
     .required(messages.Validate.SignUp.name.required),
 
   mobile: Yup.string()
-    .matches(/^[6-9]\d{9}$/, messages.Validate.userPanel.mobile.length)
-    .required(messages.Validate.userPanel.mobile.required),
+    .matches(/^[6-9]\d{9}$/, "Enter a valid 10-digit mobile number starting with 6-9")
+    .required("Mobile number is required"),
 
   countryCode: Yup.string()
-    .matches(/^\+\d{1,4}$/, messages.Validate.userPanel.countryCode.format)
-    .required(messages.Validate.userPanel.countryCode.required),
+    .matches(/^\+\d{1,4}$/, "Enter a valid country code (e.g., +91)")
+    .required("Country code is required"),
 
   address: Yup.string()
-    .min(5, messages.Validate.userPanel.address.length)
-    .required(messages.Validate.userPanel.address.required),
-
-  dob: Yup.string()
-  .matches(/^\d{2}\/\d{2}\/\d{4}$/, messages.Validate.userPanel.dob.format)
-  .max(new Date(), messages.Validate.userPanel.dob.max)
-  .required(messages.Validate.userPanel.dob.required),
+    .min(5, "Address must be at least 5 characters long")
+    .required("Address is required"),
 
   email: Yup.string()
     .email(messages.Validate.SignUp.email.email)
     .max(50, messages.Validate.SignUp.email.length)
     .required(messages.Validate.SignUp.email.required),
+
+  dob: Yup.string().required("Date of birth is required"),
 });
 
 const UserPanelScreen = ({ navigation }) => {
@@ -57,7 +52,7 @@ const UserPanelScreen = ({ navigation }) => {
     mobile: "",
     countryCode: "+91",
     address: "",
-    dob: new Date().toLocaleDateString("en-GB"), // Default to today's date
+    dob: "",
     image: null,
   });
 
@@ -67,6 +62,12 @@ const UserPanelScreen = ({ navigation }) => {
   useEffect(() => {
     loadUser();
   }, []);
+
+  const formatDate = (date) => {
+    if (!date) return "";
+    const [ day, month, year] = date.split("/");
+    return {day: day, month: month, year: year};
+  };
 
   const loadUser = async () => {
     const currentUser = await AsyncStorage.getItem("currentUser");
@@ -90,7 +91,7 @@ const UserPanelScreen = ({ navigation }) => {
     await AsyncStorage.setItem("users", JSON.stringify(updatedList));
     await AsyncStorage.setItem("currentUser", updatedValues.email);
     setInitialUser(updatedValues);
-    alert(messages.Alerts.updateProfile.Success.message);
+    alert("✅ Profile updated successfully!");
   };
 
   const pickImage = async (fromCamera, setFieldValue) => {
@@ -100,7 +101,7 @@ const UserPanelScreen = ({ navigation }) => {
       : await ImagePicker.requestMediaLibraryPermissionsAsync();
 
     if (!permission.granted) {
-      alert(messages.pickImage.permissions.message);
+      alert("Permission Denied: You need to enable permissions.");
       return;
     }
 
@@ -139,7 +140,7 @@ const UserPanelScreen = ({ navigation }) => {
           setFieldValue,
         }) => (
           <>
-            {/* Profile Image with Floating Icon */}
+            {/* Profile Image */}
             <View style={{ alignSelf: "center", marginBottom: 20 }}>
               <Image
                 source={
@@ -236,21 +237,22 @@ const UserPanelScreen = ({ navigation }) => {
             {errors.dob && touched.dob && (
               <Text style={styles.signUpError}>{errors.dob}</Text>
             )}
-            {showDatePicker && (
-              <DateTimePicker
-                value={values.dob ? new Date(values.dob) : new Date(2000, 0, 1)}
-                mode="date"
-                display="default"
-                maximumDate={new Date()}
-                onChange={(event, selectedDate) => {
-                  setShowDatePicker(Platform.OS === "ios");
-                  if (selectedDate) {
-                    const formatted = selectedDate.toLocaleDateString("en-GB");
-                    setFieldValue("dob", formatted);
-                  }
-                }}
-              />
-            )}
+            <DateTimePickerModal
+              isVisible={showDatePicker}
+              mode="date"
+              maximumDate={new Date()}
+              date={
+    values.dob
+      ? new Date(formatDate(values.dob).year, formatDate(values.dob).month - 1, formatDate(values.dob).day) // this will parse '2000-01-01' correctly
+      : new Date(2000, 0, 1)
+  }
+              onConfirm={(selectedDate) => {
+                const formatted = selectedDate.toLocaleDateString("en-GB");
+                setFieldValue("dob", formatted);
+                setShowDatePicker(false);
+              }}
+              onCancel={() => setShowDatePicker(false)}
+            />
 
             {/* Email */}
             <TextInput
@@ -276,11 +278,9 @@ const UserPanelScreen = ({ navigation }) => {
 
             <TouchableOpacity
               style={[styles.loginScreenButtons, { backgroundColor: "red" }]}
-              onPress={() => {
-                navigation.replace("ChangePassword");
-              }}
+              onPress={() => navigation.replace("ChangePassword")}
             >
-              <Text style={styles.loginScreenButtonsText}>Change Password</Text>
+              <Text style={styles.loginScreenButtonsText}>Update Password</Text>
             </TouchableOpacity>
 
             {/* Photo Picker Modal */}
@@ -291,7 +291,6 @@ const UserPanelScreen = ({ navigation }) => {
   onCameraSelect={() => pickImage(true, setFieldValue)}
   onGallerySelect={() => pickImage(false, setFieldValue)}
 />
-
           </>
         )}
       </Formik>
